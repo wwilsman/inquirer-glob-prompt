@@ -5,4 +5,13 @@
   "license": "MIT",
   "repository": "https://github.com/wwilsman/inquirer-glob-prompt.js",
   "main": "index.js",
+  "devDependencies": {
+    "inquirer": "^8.0.0"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "figures": "^3.2.0",
+    "globby": "^11.0.3",
+    "rxjs": "^6.6.7"
+  }
 }

@@ -1,0 +1,8 @@
+{
+  "name": "inquirer-glob-prompt",
+  "description": "Glob prompt for inquirer",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": "https://github.com/wwilsman/inquirer-glob-prompt.js",
+  "main": "index.js",
+}

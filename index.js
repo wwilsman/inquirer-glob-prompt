@@ -66,7 +66,7 @@ class GlobPrompt extends Prompt {
   // asynchronously glob for file paths and re-render when done
   glob(pattern = '*') {
     let promise = this.promise = globby(pattern, this.opt.glob);
-    this.page ||= { index: 0, size: this.opt.pageSize || 10 };
+    this.page = this.page || { index: 0, size: this.opt.pageSize || 10 };
     this.pattern = pattern;
 
     return promise.then(paths => {

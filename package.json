@@ -20,7 +20,7 @@
     "inquirer": "^8.0.0",
     "jasmine": "^3.7.0",
     "nyc": "^15.1.0",
-    "strip-ansi": "^6.0.0"
+    "strip-ansi": "^7.0.1"
   },
   "dependencies": {
     "chalk": "^4.1.0",

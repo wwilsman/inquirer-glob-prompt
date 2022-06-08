@@ -1,13 +1,7 @@
-const { EventEmitter } = require('events');
-const stripAnsi = require('strip-ansi');
-const dedent = require('dedent');
-
-// mock/spy globby
-const globby = jasmine.createSpy('globby', require('globby'));
-Object.assign(require.cache[require.resolve('globby')], { exports: globby });
-
-// required after mocking globby
-const Prompt = require('..');
+import { EventEmitter } from 'events';
+import stripAnsi from 'strip-ansi';
+import dedent from 'dedent';
+import Prompt from '../index.js';
 
 // stub readline like inquirer does for its own tests
 class ReadlineStub extends EventEmitter {
@@ -39,7 +33,7 @@ class ReadlineStub extends EventEmitter {
 }
 
 describe('inquirer-glob-prompt', () => {
-  let rl, question, prompt;
+  let rl, question, prompt, glob;
 
   // promised to use microtask queue
   let submit = async () => (
@@ -50,9 +44,7 @@ describe('inquirer-glob-prompt', () => {
     rl.input.emit('keypress', '', { name, ...opts }));
 
   beforeEach(() => {
-    globby.and.resolveTo([]);
-    globby.calls.reset();
-
+    glob = spyOn(Prompt.prototype, '_glob').and.resolveTo([]);
     rl = new ReadlineStub();
 
     question = {
@@ -70,10 +62,10 @@ describe('inquirer-glob-prompt', () => {
   });
 
   it('globs for "*" on init and displays matching files', async () => {
-    globby.and.resolveTo(['matching', 'files']);
+    glob.and.resolveTo(['matching', 'files']);
     prompt = new Prompt(question, rl).run();
 
-    expect(globby).toHaveBeenCalledOnceWith('*', undefined);
+    expect(glob).toHaveBeenCalledOnceWith('*', undefined);
     await expectAsync(prompt).toBePending();
 
     expect(rl.output.string).toEqual(dedent`
@@ -104,26 +96,26 @@ describe('inquirer-glob-prompt', () => {
     prompt = new Prompt(question, rl).run();
     await expectAsync(prompt).toBePending();
 
-    expect(globby).toHaveBeenCalledTimes(1);
+    expect(glob).toHaveBeenCalledTimes(1);
 
     await type('*'); // *
 
-    expect(globby).toHaveBeenCalledTimes(1);
+    expect(glob).toHaveBeenCalledTimes(1);
 
     await type('*'); // **
 
-    expect(globby).toHaveBeenCalledTimes(2);
+    expect(glob).toHaveBeenCalledTimes(2);
 
     await submit();
     await expectAsync(prompt).toBeResolvedTo([]);
   });
 
-  it('provides glob options to globby', async () => {
+  it('provides glob options to glob', async () => {
     question.glob = { ignore: 'node_modules' };
     prompt = new Prompt(question, rl).run();
     await expectAsync(prompt).toBePending();
 
-    expect(globby).toHaveBeenCalledOnceWith('*', question.glob);
+    expect(glob).toHaveBeenCalledOnceWith('*', question.glob);
 
     await submit();
     await expectAsync(prompt).toBeResolvedTo([]);
@@ -151,7 +143,7 @@ describe('inquirer-glob-prompt', () => {
         >> A matching pattern is required
       `);
 
-      globby.and.resolveTo(['any']);
+      glob.and.resolveTo(['any']);
 
       await type('**').then(submit);
       await expectAsync(prompt).toBeResolvedTo(['any']);
@@ -209,7 +201,7 @@ describe('inquirer-glob-prompt', () => {
 
     beforeEach(() => {
       paths = Array(12).fill('').map((_, i) => `fake/file/${i + 1}`);
-      globby.and.resolveTo(paths);
+      glob.and.resolveTo(paths);
     });
 
     it('paginates matching files in excess of 10 by default', async () => {

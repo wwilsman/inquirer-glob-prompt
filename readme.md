@@ -12,18 +12,19 @@ $ npm install --save inquirer-glob-prompt
 ## Usage
 
 ``` javascript
-const inquirer = require('inquirer')
+import inquirer from 'inquirer';
+import GlobPrompt from 'inquirer-glob-prompt';
 
 // you can change 'glob' to any prefered type name
-inquirer.registerPrompt('glob', require('inquirer-glob-prompt'))
+inquirer.registerPrompt('glob', GlobPrompt);
 
-inquirer.prompt([{
+let answers = await inquirer.prompt([{
   type: 'glob',
   name: 'filePaths'
   // ...
-}]).then(answers => {
-  console.log(answers)
-})
+}]);
+
+console.log(answers);
 ```
 
 ### Options
@@ -31,7 +32,7 @@ inquirer.prompt([{
 Takes `type`, `name`, `message`[, `default`, `when`, `pageSize`, `glob`] properties. See
 [inquirer](https://github.com/SBoudrias/Inquirer.js#question) documentation for properties other than `glob`.
 
-**glob** (Object) options are passed directly to [globby](https://github.com/sindresorhus/globby#readme)
+**glob** (Object) options are passed directly to [fast-glob](https://github.com/mrmlnc/fast-glob#readme)
 during initial render and whenever input changes.
 
 ### Example

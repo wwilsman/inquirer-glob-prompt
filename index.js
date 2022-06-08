@@ -1,11 +1,11 @@
-const chalk = require('chalk');
-const globby = require('globby');
-const figures = require('figures');
-const Prompt = require('inquirer/lib/prompts/base');
-const observe = require('inquirer/lib/utils/events');
-const { takeWhile } = require('rxjs/operators');
+import chalk from 'chalk';
+import glob from 'fast-glob';
+import figures from 'figures';
+import Prompt from 'inquirer/lib/prompts/base.js';
+import observe from 'inquirer/lib/utils/events.js';
+import { takeWhile } from 'rxjs/operators';
 
-class GlobPrompt extends Prompt {
+export class GlobPrompt extends Prompt {
   _run(cb) {
     this.done = cb;
 
@@ -65,7 +65,7 @@ class GlobPrompt extends Prompt {
 
   // asynchronously glob for file paths and re-render when done
   glob(pattern = '*') {
-    let promise = this.promise = globby(pattern, this.opt.glob);
+    let promise = this.promise = this._glob(pattern, this.opt.glob);
     this.page = this.page || { index: 0, size: this.opt.pageSize || 10 };
     this.pattern = pattern;
 
@@ -76,6 +76,11 @@ class GlobPrompt extends Prompt {
       this.paths = paths;
       this.render();
     });
+  }
+
+  /* istanbul ignore next: necessary to mock during testing */
+  _glob(...args) {
+    return glob(...args);
   }
 
   // when "enter" is pressed, the rendered answer becomes the glob
@@ -119,4 +124,4 @@ class GlobPrompt extends Prompt {
   }
 }
 
-module.exports = GlobPrompt;
+export default GlobPrompt;

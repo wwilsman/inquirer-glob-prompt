@@ -1,16 +1,17 @@
-const inquirer = require('inquirer');
-const { inspect } = require('util');
+import inquirer from 'inquirer';
+import GlobPrompt from 'inquirer-glob-prompt';
+import { inspect } from 'util';
 
-inquirer.registerPrompt('glob', require('.'));
+inquirer.registerPrompt('glob', GlobPrompt);
 
-inquirer.prompt([{
+let answers = await inquirer.prompt([{
   type: 'glob',
-  name: 'files',
+  name: 'filePaths',
   message: 'Which files?',
-  default: '**/*',
+  default: 'cypress/plugins/index.js',
   glob: {
     ignore: 'node_modules'
   }
-}]).then(answers => {
-  console.log(inspect(answers, { colors: true }));
-});
+}]);
+
+console.log(inspect(answers, { colors: true }));

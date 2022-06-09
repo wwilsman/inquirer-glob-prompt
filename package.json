@@ -1,10 +1,13 @@
 {
   "name": "inquirer-glob-prompt",
   "description": "Glob prompt for inquirer",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "MIT",
   "repository": "https://github.com/wwilsman/inquirer-glob-prompt.js",
-  "main": "index.js",
+  "type": "module",
+  "main": "./index.js",
+  "exports": "./index.js",
+  "files": ["index.js"],
   "scripts": {
     "lint": "eslint --ignore-path .gitignore .",
     "test": "jasmine test/*.test.js",
@@ -12,20 +15,21 @@
   },
   "devDependencies": {
     "dedent": "^0.7.0",
-    "eslint": "^7.23.0",
-    "eslint-config-standard": "^16.0.2",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint": "^8.17.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.3.1",
-    "inquirer": "^8.0.0",
-    "jasmine": "^3.7.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "inquirer": "^8.2.4",
+    "jasmine": "^4.1.0",
     "nyc": "^15.1.0",
-    "strip-ansi": "^6.0.0"
+    "strip-ansi": "^7.0.1"
   },
   "dependencies": {
-    "chalk": "^4.1.0",
-    "figures": "^3.2.0",
-    "globby": "^11.0.3",
-    "rxjs": "^7.0.0"
+    "chalk": "^5.0.1",
+    "figures": "^4.0.1",
+    "globby": "^13.1.1",
+    "rxjs": "^7.5.5"
   }
 }

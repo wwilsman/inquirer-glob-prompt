@@ -1566,18 +1566,18 @@ istanbul-reports@^3.0.2:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
 
-jasmine-core@^4.1.0:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-4.1.1.tgz#1045091e16f4f19e1d72416eef5db01e64d5fbeb"
-  integrity sha512-lmUfT5XcK9KKvt3lLYzn93hc4MGzlUBowExFVgzbSW0ZCrdeyS574dfsyfRhxbg81Wj4gk+RxUiTnj7KBfDA1g==
+jasmine-core@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-4.4.0.tgz#848fe45c1839cacaf1f2429d400d1d4f85d2856a"
+  integrity sha512-+l482uImx5BVd6brJYlaHe2UwfKoZBqQfNp20ZmdNfsjGFTemGfqHLsXjKEW23w9R/m8WYeFc9JmIgjj6dUtAA==
 
 jasmine@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/jasmine/-/jasmine-4.1.0.tgz#0de347ca8bb6cc764b0ed186ae4cfc45bd64bdc4"
-  integrity sha512-4VhjbUgwfNS9CBnUMoSWr9tdNgOoOhNIjAD8YRxTn+PmOf4qTSC0Uqhk66dWGnz2vJxtNIU0uBjiwnsp4Ud9VA==
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/jasmine/-/jasmine-4.4.0.tgz#e3e359723d9679993b70de3e0441517c154b9647"
+  integrity sha512-xrbOyYkkCvgduNw7CKktDtNb+BwwBv/zvQeHpTkbxqQ37AJL5V4sY3jHoMIJPP/hTc3QxLVwOyxc87AqA+kw5g==
   dependencies:
     glob "^7.1.6"
-    jasmine-core "^4.1.0"
+    jasmine-core "^4.4.0"
 
 js-tokens@^4.0.0:
   version "4.0.0"
